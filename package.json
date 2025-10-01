@@ -1,6 +1,6 @@
 {
   "name": "@stoplight/json-schema-viewer",
-  "version": "0.0.0",
+  "version": "4.16.401",
   "description": "A beautiful React component for viewing JSON Schema",
   "keywords": [],
   "sideEffects": false,
@@ -26,7 +26,7 @@
     "commit": "git-cz",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint.fix": "yarn lint --fix",
-    "release": "sl-scripts release",
+    "release": "rm -rf .publish && mkdir .publish && cp package.json README.md LICENSE .publish/ && cp -r dist/* .publish/ && cd .publish && yarn pack && yarn publish ./stoplight-json-schema-viewer* --registry https://bin.ti8m.ch/artifactory/api/npm/channelsuite-npm-release/",
     "release.docs": "sl-scripts release:docs",
     "release.dryRun": "sl-scripts release --dry-run --debug",
     "storybook": "start-storybook -p 6006",
