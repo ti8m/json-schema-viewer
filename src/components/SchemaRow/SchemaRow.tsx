@@ -117,6 +117,11 @@ export const SchemaRow: React.FunctionComponent<SchemaRowProps> = React.memo(
               maxW="full"
               onClick={isCollapsible ? () => setExpanded(!isExpanded) : undefined}
               cursor={isCollapsible ? 'pointer' : undefined}
+              // The Flex component extends Box.
+              // node_modules/@stoplight/mosaic/components/Box/types.d.ts line 5 defines that all data-xxx attributes must be of type string.
+              // export declare type DatasetProps = Record<`data-${string}`, string>;
+              // --> we can't use the boolean 'required' directly
+              data-required={required ? 'true' : undefined}
             >
               {isCollapsible ? <Caret isExpanded={isExpanded} /> : null}
               <Flex alignItems="baseline" fontSize="base">
