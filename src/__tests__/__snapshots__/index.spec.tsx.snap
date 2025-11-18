@@ -861,6 +861,7 @@ exports[`HTML Output > given anyOf combiner placed next to allOf > given allOf m
           >
             <div
               class="sl-flex sl-items-center sl-max-w-full"
+              data-required="true"
             >
               <div
                 class="sl-flex sl-items-baseline sl-text-base"
@@ -1381,6 +1382,7 @@ exports[`HTML Output > given oneOf combiner placed next to allOf > given allOf m
           >
             <div
               class="sl-flex sl-items-center sl-max-w-full"
+              data-required="true"
             >
               <div
                 class="sl-flex sl-items-baseline sl-text-base"
