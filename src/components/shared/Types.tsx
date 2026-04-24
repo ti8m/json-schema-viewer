@@ -89,7 +89,7 @@ export const Types: React.FunctionComponent<{ schemaNode: SchemaNode }> = ({ sch
         // @ts-ignore
       } else if (schemaNode.fragment?.items?.$ref) {
         // @ts-ignore
-        printedName = getLastPathSegment(schemaNode.fragment.items.$ref as string);
+        printedName = `array[${getLastPathSegment(schemaNode.fragment.items.$ref as string)}]`;
       }
     } else if (type === SchemaNodeKind.Object) {
       // @ts-ignore

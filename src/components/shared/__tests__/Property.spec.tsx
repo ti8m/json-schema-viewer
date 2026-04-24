@@ -778,6 +778,58 @@ describe('Property component', () => {
       `,
       );
     });
+
+    it('given an array whose items use $ref, should display "array[<refName>]"', () => {
+      const schema: JSONSchema4 = {
+        type: 'array',
+        items: { $ref: '#/definitions/User' },
+        definitions: {
+          User: {
+            type: 'object',
+            properties: { name: { type: 'string' } },
+          },
+        },
+      };
+
+      const wrapper = renderSchema(schema).queryAllByTestId('property-type')[0];
+      expect(wrapper).toMatchInlineSnapshot(`
+        <span
+          class="sl-truncate sl-text-muted"
+          data-test="property-type"
+        >
+          array[User]
+        </span>
+      `);
+    });
+
+    it('given an array whose items have objectRefType, should display "array[<objectRefType>]"', () => {
+      const schema: JSONSchema4 = {
+        type: 'array',
+        items: { type: 'object', objectRefType: 'User' } as any,
+      };
+
+      const wrapper = renderSchema(schema).queryAllByTestId('property-type')[0];
+      expect(wrapper).toMatchInlineSnapshot(`
+        <span
+          class="sl-truncate sl-text-muted"
+          data-test="property-type"
+        >
+          array[User]
+        </span>
+      `);
+    });
+
+    it('documents current behavior when $ref sits on an array node itself (no items)', () => {
+      const schema = {
+        type: 'array',
+        $ref: '#/definitions/Users',
+        definitions: { Users: { type: 'array', items: { type: 'string' } } },
+      } as any;
+
+      const result = renderSchema(schema);
+      const typeCell = result.queryByTestId('property-type') ?? result.queryByTestId('property-type-ref');
+      expect(typeCell?.textContent).toMatchInlineSnapshot(`"array[string]"`);
+    });
   });
 
   describe('properties titles', () => {
